@@ -14,6 +14,7 @@ import java.util.Properties;
 @Configuration
 @EnableTransactionManagement
 public class HibernateConfig {
+
     @Bean(name = "entityManagerFactory")
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
@@ -29,15 +30,15 @@ public class HibernateConfig {
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-        dataSource.setUrl("jdbc:sqlserver://localhost:1433;trustServerCertificate=true;databaseName=DB;");
-        dataSource.setUsername("sa");
-        dataSource.setPassword("Secret1234");
+        dataSource.setUrl("jdbc:sqlserver://masnemasy.database.windows.net:1433;database=mas2;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;");
         dataSource.setSchema("dbo");
+        dataSource.setUsername("Serafin@masnemasy");
+        dataSource.setPassword("Server_Server");
 
         return dataSource;
     }
 
-    @Bean
+    @Bean(name = "transactionManager")
     public PlatformTransactionManager hibernateTransactionManager() {
         HibernateTransactionManager transactionManager
                 = new HibernateTransactionManager();

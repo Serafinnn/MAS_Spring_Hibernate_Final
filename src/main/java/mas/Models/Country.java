@@ -1,5 +1,6 @@
 package mas.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -13,30 +14,26 @@ import java.util.TreeMap;
 @ToString
 @RequiredArgsConstructor
 @NoArgsConstructor(force = true)
-@Table(name = "Country")
+@JsonIgnoreProperties(value = "departmentQualification")
 public class Country implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "countryGen")
-    @SequenceGenerator(name = "countryGen", allocationSize = 1)
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@SequenceGenerator(name = "countryGen", allocationSize = 1)
+    int id;
 
     @NonNull
-    private String fullName;
-    private String shortName;
-    private float surfaceInMetersSquared;
+    String fullName;
+    @NonNull
+    String shortName;
+    @NonNull
+    float surfaceInMetersSquared;
     /**
      * Przykład asocjacji kwalifikowanej
      */
     @OneToMany
     @ToString.Exclude
     private Map<String, Department> departmentQualification = new TreeMap<>();
-
-    public Country(@NonNull String fullName, float surfaceInMetersSquared, String shortName) {
-        this.fullName = fullName;
-        this.surfaceInMetersSquared = surfaceInMetersSquared;
-        this.shortName = shortName;
-    }
 
     public void addDeptQualification(Department department){
         if (!departmentQualification.containsKey(department.getName())){

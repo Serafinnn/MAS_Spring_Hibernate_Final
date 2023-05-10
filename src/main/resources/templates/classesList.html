@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Classes</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/base.css" th:href="@{/stylesheets/base.css}">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/nav.css" th:href="@{/stylesheets/nav.css}">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/table.css" th:href="@{/stylesheets/table.css}">
+
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+
+        function alertFun(alertText){
+            if (alertText !== null){
+                alert(alertText);
+            }
+        }
+
+        let param = "";
+        let baseLink = "";
+
+        function setParam() {
+            param = Math.floor(Math.random() * 10).toString();
+        }
+
+        function getIdValueFromText() {
+            return document.getElementById("id_inputId").textContent.toString();
+        }
+
+        function setHrefs(id) {
+            let prev = document.getElementById("prev");
+
+            if (prev.dataset.id_prev.toString() !== id.toString()) {
+
+                let present = document.getElementById(id.toString());
+                let link = document.getElementById("getAll");
+                let link2 = document.getElementById("getAdd");
+                console.log(prev.dataset.id_prev.toString())
+
+                if (prev.dataset.id_prev.toString() !== "-1") {
+                    document.getElementById(prev.dataset.id_prev.toString()).style.backgroundColor = "lightblue"
+                }
+                prev.dataset.id_prev = id.toString();
+                present.style.transitionDuration = "400ms"
+                present.style.backgroundColor = "#59c5e7";
+                baseLink = "/" + present.dataset.name.toString().toLowerCase()
+                link.setAttribute("href", baseLink.toString() + "/all");
+                link2.setAttribute("href", baseLink.toString() + "/showForm");
+            }
+        }
+
+        function showIdFormRow() {
+            let display = document.getElementById("idFormRow").style.display.toString();
+            if (display !== "none") {
+                document.getElementById("idFormRow").style.display = "none"
+            } else {
+                document.getElementById("idFormRow").style.display = "table-row"
+            }
+        }
+
+        /*]]>*/
+    </script>
+</head>
+<body th:onload="'alertFun(' + ${alertTxt} + ')'">
+<header>
+    <div th:replace="fragments/navbar :: navbar"></div>
+</header>
+<div class="center">
+    <div class="tableClass" style="font-family: 'Monaco', monospace;">
+        <table>
+            <thead style="display: table-caption; padding-bottom: 10px">
+            <tr>
+                <td class="tableTdOptions">
+                    <a class="tableHref" id="getAll" href="">
+                        All
+                    </a>
+                </td>
+                <td class="tableTdOptions">
+                    <button class="tableButton" onclick="showIdFormRow()">
+                        Id
+                    </button>
+                </td>
+                <td class="tableTdOptions">
+                    <a class="tableHref" id="getAdd" href="">
+                        Add
+                    </a>
+                </td>
+                <td class="tableTdOptions">
+                    Order
+                </td>
+            </tr>
+            <tr id="idFormRow" class="test"
+                style="
+                display: none;">
+                <td class="tableTd"  colspan="2">
+                    <p id="id_inputId" class="text" contenteditable=true th:placeholder="id"></p>
+                </td>
+                <td class="tableTd" colspan="2">
+                    <button
+                            class="tableButton" onclick="location.href=baseLink.toString() + '/getById?id=' + getIdValueFromText()" >
+                        Submit
+                    </button>
+                </td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${names.isEmpty()}">
+                <td colspan="4"> No Models Available</td>
+            </tr>
+            <tr th:each="name, iter : ${names}" class="test">
+
+                <td colspan="4" th:id="${iter.index}" class="tableTd" th:attr="data-name=${name}">
+                    <span id="prev" data-id_prev="-1" style="display: none"></span>
+                    <button class="tableButton" th:text="${name}" th:onclick="'setHrefs('+ ${iter.index} +')'"></button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

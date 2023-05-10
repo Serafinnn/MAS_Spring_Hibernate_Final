@@ -1,10 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link rel="stylesheet" type="text/css" href="stylesheets/base.css" th:href="@{/stylesheets/base.css}">
+    <link rel="stylesheet" type="text/css" href="stylesheets/nav.css" th:href="@{/stylesheets/nav.css}">
     <meta charset="UTF-8">
     <title>MAS</title>
+
 </head>
-<body>
-    <h1>MAS Projekt Spring + Hibernate</h1>
+<body style="font-family: 'Monaco', monospace;">
+<header>
+    <div th:replace="fragments/navbar :: navbar"></div>
+    <div th:fragment="navbar">
+        <div class="navbarClass">
+            <a class="pole" href="/">Home</a>
+            <a class="pole" href="/classes/show">Classes</a>
+        </div>
+    </div>
+</header>
+    <h2>MAS Projekt Spring + Hibernate</h2>
 </body>
 </html>

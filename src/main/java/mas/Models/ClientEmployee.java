@@ -16,8 +16,6 @@ public class ClientEmployee extends Employee implements IClient {
     public ClientEmployee(int discount, String firstName, String lastName, LocalDate birthDate, double salary, LocalDate empDate, Department dept, int netWorth) throws Exception {
         super(firstName, lastName, birthDate, salary, empDate, dept);
         this.client = new Client(null, null, null, netWorth);
-        this.personTraits.add(PersonTraits.Client);
-        this.personTraits.add(PersonTraits.Employee);
     }
 
     public ClientEmployee() {

@@ -8,11 +8,9 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "Department")
 public class Department implements Serializable {
     @Id
-    @GeneratedValue (strategy = GenerationType.SEQUENCE, generator = "departmentGen")
-    @SequenceGenerator(name = "departmentGen", allocationSize = 1)
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private String location;

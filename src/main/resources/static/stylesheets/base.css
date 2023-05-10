@@ -1,0 +1,9 @@
+body, header {
+    background-color: #97a1a1;
+    font-size: 35px;
+    font-family: 'Monaco', monospace;
+    margin: 0;
+}
+header {
+    background-color: azure;
+}

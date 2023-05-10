@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title th:text="${className}"></title>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/base.css" th:href="@{/stylesheets/base.css}">
+  <link rel="stylesheet" type="text/css" href="/stylesheets/table.css" th:href="@{/stylesheets/table.css}">
+  <link rel="stylesheet" type="text/css" href="/stylesheets/nav.css" th:href="@{/stylesheets/nav.css}">
+
+  <SCRIPT>
+    /*<![CDATA[*/
+
+
+
+    /*]]>*/
+  </SCRIPT>
+</head>
+<body style="font-family: 'Monaco', monospace;">
+<header>
+  <div th:replace="fragments/navbar :: navbar"></div>
+</header>
+<div class="center">
+    <form th:action="'/'+ ${className} + '/add'" method="post">
+        <th:block th:each="field : ${fieldsList}">
+            <label th:name="${field}" th:text="${field}"></label>
+            <input th:name="${field}" type="text"/><br>
+        </th:block>
+        <input type="submit" name="Submit"/>
+    </form>
+</div>
+
+</body>
+</html>

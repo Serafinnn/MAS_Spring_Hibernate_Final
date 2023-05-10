@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title th:text="${className}"></title>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/base.css" th:href="@{/stylesheets/base.css}">
+  <link rel="stylesheet" type="text/css" href="/stylesheets/table.css" th:href="@{/stylesheets/table.css}">
+  <link rel="stylesheet" type="text/css" href="/stylesheets/nav.css" th:href="@{/stylesheets/nav.css}">
+
+  <SCRIPT>
+    /*<![CDATA[*/
+
+    /*]]>*/
+  </SCRIPT>
+</head>
+<body style="font-family: 'Monaco', monospace;">
+<header>
+  <th:block th:id="alertId" th:attr="data-alertText=${alert}"></th:block>
+  <div th:replace="fragments/navbar :: navbar"></div>
+</header>
+<div>
+  <table>
+    <thead>
+    <tr>
+      <th th:each="name: ${fieldsList}" th:text="${name}"> Field Name </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${listOfListOfProperties.isEmpty()}">
+      <td th:colspan="${fieldsList.size()}"> No Data Available </td>
+    </tr>
+    <tr th:each="propertyList : ${listOfListOfProperties}" class="test">
+      <td th:each="propName : ${propertyList}">
+        <span th:text="${propName}"> Full name </span>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

@@ -8,8 +8,7 @@ import java.util.List;
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Initiative {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "initGen")
-    @SequenceGenerator(name = "initGen", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 

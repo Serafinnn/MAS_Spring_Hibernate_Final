@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
-@Entity(name = "employee_initiative")
+@Entity
 public class EmployeeInitiative implements Serializable {
     @Id
     @ManyToOne

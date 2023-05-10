@@ -1,28 +1,24 @@
 package mas.Models;
 
 import jakarta.persistence.Entity;
+import lombok.*;
+import org.hibernate.Hibernate;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 @Entity
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
+@NoArgsConstructor(force = true)
 public class Client extends Person {
+    @NonNull
     int netWorth;
 
     public Client (String firstName, String lastName, LocalDate birthDate, int netWorth){
         super(firstName, lastName, birthDate);
-        personTraits.add(PersonTraits.Client);
-        this.netWorth = netWorth;
-    }
-
-    public Client() {
-
-    }
-
-    public int getNetWorth() {
-        return netWorth;
-    }
-
-    public void setNetWorth(int netWorth) {
         this.netWorth = netWorth;
     }
 

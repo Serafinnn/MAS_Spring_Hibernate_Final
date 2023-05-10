@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/nav.css" th:href="@{/stylesheets/nav.css}">
+</head>
+<body>
+<div th:fragment="navbar">
+    <div style="font-family: 'Monaco', monospace;" class="navbarClass">
+            <a class="pole" href="/">Home</a>
+            <a class="pole" href="/classes/show">Classes</a>
+    </div>
+</div>
+</body>
+</html>

@@ -1,19 +1,18 @@
 package mas;
 
-import mas.Models.Country;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import java.util.List;
-
-@SpringBootApplication
+@SpringBootApplication(exclude = HibernateJpaAutoConfiguration.class)
 @EnableConfigurationProperties
+@EnableTransactionManagement
 @EntityScan(basePackages = {"mas.Models"})
 public class MasSpringHibernateApplication implements CommandLineRunner {
 
@@ -26,9 +25,6 @@ public class MasSpringHibernateApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Session session = sessionFactory.openSession();
-        List<Country> list = session.createQuery("SELECT cntr from Country cntr", Country.class)
-                .getResultList();
-        System.out.println(list);
+
     }
 }
