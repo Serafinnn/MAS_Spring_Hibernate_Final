@@ -69,6 +69,9 @@ public abstract class Initiative {
         this.employees = employees;
     }
 
+    /**
+     * przykład XOR
+     * */
     public void setTypeOfProject(TypeOfInitiative type) {
         if (type != null && type != this.typeOfInitiative){
             this.typeOfInitiative.removeInitiative(this);

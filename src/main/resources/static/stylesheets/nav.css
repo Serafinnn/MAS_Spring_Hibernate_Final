@@ -16,3 +16,7 @@ a.pole {
     margin: 3px;
     text-align: center;
 }
+.pole:hover {
+    background-color: #30c0ee;
+    transition-duration: 300ms;
+}

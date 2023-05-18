@@ -1,5 +1,6 @@
 package mas.Controllers;
 
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +18,7 @@ public class ClassesController {
 
 
     @GetMapping("/show")
-    public String showClasses(Model model) {
+    public String showClasses(Model model){
         Set<String> names;
         names = Stream.of(Objects.requireNonNull(new File("src/main/java/mas/Models").listFiles()))
                 .filter(file -> !file.isDirectory())

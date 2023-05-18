@@ -54,8 +54,8 @@ public class Employee extends Person implements Serializable{
         return this.toString()+' '+getSalary();
     }
 
-    public void addInit(Initiative initiative){
-        EmployeeInitiative ep = new EmployeeInitiative(this, initiative, LocalDate.now());
+    public void addInit(Initiative initiative, boolean isInitLeader){
+        EmployeeInitiative ep = new EmployeeInitiative(this, initiative, isInitLeader);
         initiatives.add(ep);
         initiative.getEmployees().add(ep);
     }

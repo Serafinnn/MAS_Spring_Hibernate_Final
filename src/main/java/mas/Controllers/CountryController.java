@@ -8,8 +8,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 @Controller
@@ -22,6 +25,7 @@ public class CountryController {
     @GetMapping("/all")
     public String getAll(Model model) {
         List<Country> listOfRows = (List<Country>) repository.findAll();
+        listOfRows.sort(Comparator.comparing(Country::getFullName));
         new BaseService().setModelToShowAll(Country.class, listOfRows, model);
 
         return "baseModelsList";
@@ -44,15 +48,12 @@ public class CountryController {
     }
     @Transactional
     @PostMapping(value = "/add")
-    public String addCountry(Country country, Model model){
-        String alert = "";
+    public String addCountry(Country country, Model model, RedirectAttributes redirectAttributes){
         if (!repository.exists(country.getShortName(), country.getFullName())){
             repository.save(country);
         }else {
-            alert = "Unique constrains prevented adding new Country";
+            redirectAttributes.addFlashAttribute("alertAdd", 1);
         }
-
-        model.addAttribute("alertTxt", alert);
 
         return "redirect:/classes/show";
     }

@@ -3,35 +3,42 @@ package mas.Models;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import lombok.*;
+import org.hibernate.Hibernate;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
 public class EmployeeInitiative implements Serializable {
     @Id
     @ManyToOne
     private Employee employee;
-
     @Id
     @ManyToOne
     private Initiative initiative;
 
+    /**
+     * Przykład history
+     * */
     private LocalDate assigned;
 
-    public LocalDate getAssigned() {
-        return assigned;
-    }
+    /**
+     * Przykład subset
+     * */
+    private boolean iInitiativeLeader;
 
-    public void setAssigned(LocalDate assigned) {
-        this.assigned = assigned;
-    }
 
-    public EmployeeInitiative(Employee employee, Initiative initiative, LocalDate assigned) {
+    public EmployeeInitiative(Employee employee, Initiative initiative, boolean isInitLeader) {
         this.employee = employee;
         this.initiative = initiative;
-        this.assigned = assigned;
+        this.assigned = LocalDate.now();
+        this.iInitiativeLeader = isInitLeader;
     }
 
     public EmployeeInitiative(Employee employee, Initiative initiative) {
@@ -39,38 +46,16 @@ public class EmployeeInitiative implements Serializable {
         this.initiative = initiative;
     }
 
-    public EmployeeInitiative() {}
-
-    public Employee getEmployee() {
-        return employee;
-    }
-
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
-
-
-    /**
-     * Przykład asocjacji z atrybutem
-     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
         EmployeeInitiative that = (EmployeeInitiative) o;
-        return Objects.equals(employee, that.employee) && Objects.equals(initiative, that.initiative);
+        return getEmployee() != null && Objects.equals(getEmployee(), that.getEmployee());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(employee, initiative);
-    }
-
-    public Initiative getInitiative() {
-        return initiative;
-    }
-
-    public void setInitiative(Initiative initiative) {
-        this.initiative = initiative;
+        return getClass().hashCode();
     }
 }
