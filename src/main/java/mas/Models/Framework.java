@@ -2,11 +2,9 @@ package mas.Models;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.Hibernate;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Entity
 @Getter
@@ -20,7 +18,7 @@ public abstract class Framework {
     private int id;
     String name;
     String company;
-    @OneToMany(mappedBy = "type")
+    @OneToMany(mappedBy = "type", cascade = CascadeType.ALL)
     @ToString.Exclude
     List<Initiative> initiatives;
 

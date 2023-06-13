@@ -2,11 +2,8 @@ package mas.Models;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.ListIndexJavaType;
-import org.hibernate.type.descriptor.java.StringJavaType;
 
 import java.time.LocalDate;
-import java.util.EnumSet;
 
 
 enum PersonTraits {Person, Employee, Client}

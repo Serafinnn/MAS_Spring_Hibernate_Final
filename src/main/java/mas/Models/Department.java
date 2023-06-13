@@ -13,8 +13,8 @@ public class Department implements Serializable {
     @OrderColumn
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private int id;
-    private String name;
-    private String location;
+    private java.lang.String name;
+    private java.lang.String location;
     @OneToMany(mappedBy = "department")
     private List<Employee> employees = new ArrayList<>();
     @ManyToOne
@@ -38,7 +38,7 @@ public class Department implements Serializable {
     }
 
     public Department() {}
-    public Department(String name, String location) {
+    public Department(java.lang.String name, java.lang.String location) {
         this.name = name;
         this.location = location;
     }
@@ -51,19 +51,19 @@ public class Department implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
+    public java.lang.String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(java.lang.String name) {
         this.name = name;
     }
 
-    public String getLocation() {
+    public java.lang.String getLocation() {
         return location;
     }
 
-    public void setLocation(String location) {
+    public void setLocation(java.lang.String location) {
         this.location = location;
     }
 

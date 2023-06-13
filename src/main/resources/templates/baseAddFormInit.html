@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title th:text="${className}"></title>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/base.css" th:href="@{/stylesheets/base.css}">
+  <link rel="stylesheet" type="text/css" href="/stylesheets/table.css" th:href="@{/stylesheets/table.css}">
+  <link rel="stylesheet" type="text/css" href="/stylesheets/nav.css" th:href="@{/stylesheets/nav.css}">
+
+  <SCRIPT>
+    /*<![CDATA[*/
+
+
+
+    /*]]>*/
+  </SCRIPT>
+</head>
+<body style="font-family: 'Monaco', monospace;">
+<header>
+  <div th:replace="fragments/navbar :: navbar"></div>
+</header>
+<div class="center">
+    <form th:action="'/'+ ${className} + '/add'" th:object="${codeProjectDto}"  method="post">
+        <label>startDate</label><br>
+        <label>
+            <input type="text" th:field="*{startDate}" placeholder="YYYY-MM-DD">
+        </label><br>
+        <label>completed</label><br>
+        <label>
+            <select th:field="*{completed}">
+                <option value="Tak">Tak</option>
+                <option value="Nie">Nie</option>
+            </select>
+        </label><br>
+        <label>name</label><br>
+        <label>
+            <input type="text" th:field="*{name}">
+        </label><br>
+        <label>description</label><br>
+        <label>
+            <input type="text" th:field="*{description}">
+        </label><br>
+        <label>framework</label><br>
+        <label>
+            <select th:field="*{type}">
+                <th:block th:each="framework : ${frameworks}">
+                    <option th:value="${framework}" th:text="${framework}"></option>
+                </th:block>
+            </select>
+        </label><br>
+        <label>employee</label><br>
+        <label>
+            <select th:field="*{empName}">
+                <option th:value="empty" th:text="empty" selected></option>
+                <th:block th:each="employee : ${employees}">
+                    <option th:value="${employee}" th:text="${employee}"></option>
+                </th:block>
+            </select>
+        </label><br>
+        <br>
+        <input type="submit" name="Submit"/><br>
+    </form>
+</div>
+</body>
+</html>

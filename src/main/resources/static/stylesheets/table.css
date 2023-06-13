@@ -90,7 +90,7 @@ div.tableClass {
    transition: transform .1s;
    font-family: 'Monaco', monospace;
 }
-.tableButton:hover, .tableTdOptions:hover {
+.tableButton:hover, .tableTdOptions:hover{
    background-color: #59c5e7;
    transition-duration: 200ms;
    transform: scale(1.05);

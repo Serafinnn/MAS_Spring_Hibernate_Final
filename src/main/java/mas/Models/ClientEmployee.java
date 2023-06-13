@@ -13,9 +13,9 @@ public class ClientEmployee extends Employee implements IClient {
     /**
      * Przykład wielodziedziczenia
      */
-    public ClientEmployee(int discount, String firstName, String lastName, LocalDate birthDate, double salary, LocalDate empDate, Department dept, int netWorth) throws Exception {
+    public ClientEmployee( int discount, java.lang.String firstName, java.lang.String lastName, LocalDate birthDate, double salary, LocalDate empDate, Department dept, int netWorth) throws Exception {
         super(firstName, lastName, birthDate, salary, empDate, dept);
-        this.client = new Client(null, null, null, netWorth);
+        this.client = new Client( null, null, null, netWorth);
     }
 
     public ClientEmployee() {

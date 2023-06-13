@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title th:text="${className}"></title>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/base.css" th:href="@{/stylesheets/base.css}">
+  <link rel="stylesheet" type="text/css" href="/stylesheets/table.css" th:href="@{/stylesheets/table.css}">
+  <link rel="stylesheet" type="text/css" href="/stylesheets/nav.css" th:href="@{/stylesheets/nav.css}">
+
+  <SCRIPT>
+    /*<![CDATA[*/
+
+
+
+    /*]]>*/
+  </SCRIPT>
+</head>
+<body style="font-family: 'Monaco', monospace;">
+<header>
+  <div th:replace="fragments/navbar :: navbar"></div>
+</header>
+<div class="center">
+  <h1>WAIT</h1>
+  <a class="tableHref" id="getAll" href="/wait/add">
+    Proceed
+  </a>
+</div>
+
+</body>
+</html>

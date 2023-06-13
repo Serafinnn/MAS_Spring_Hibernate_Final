@@ -77,7 +77,7 @@ CREATE TABLE department
 )
 GO
 
-CREATE TABLE employee
+CREATE TABLE string
 (
     id            int       NOT NULL,
     salary        float(53) NOT NULL,
@@ -178,7 +178,7 @@ ALTER TABLE charity_project
 GO
 
 ALTER TABLE client_employee
-    ADD CONSTRAINT FK_CLIENTEMPLOYEE_ON_ID FOREIGN KEY (id) REFERENCES employee (id)
+    ADD CONSTRAINT FK_CLIENTEMPLOYEE_ON_ID FOREIGN KEY (id) REFERENCES string (id)
 GO
 
 ALTER TABLE client
@@ -194,18 +194,18 @@ ALTER TABLE department
 GO
 
 ALTER TABLE employee_initiative
-    ADD CONSTRAINT FK_EMPLOYEE_INITIATIVE_ON_EMPLOYEE FOREIGN KEY (employee_id) REFERENCES employee (id)
+    ADD CONSTRAINT FK_EMPLOYEE_INITIATIVE_ON_EMPLOYEE FOREIGN KEY (employee_id) REFERENCES string (id)
 GO
 
 ALTER TABLE employee_initiative
     ADD CONSTRAINT FK_EMPLOYEE_INITIATIVE_ON_INITIATIVE FOREIGN KEY (initiative_id) REFERENCES initiative (id)
 GO
 
-ALTER TABLE employee
+ALTER TABLE string
     ADD CONSTRAINT FK_EMPLOYEE_ON_DEPARTMENT FOREIGN KEY (department_id) REFERENCES department (id)
 GO
 
-ALTER TABLE employee
+ALTER TABLE string
     ADD CONSTRAINT FK_EMPLOYEE_ON_ID FOREIGN KEY (id) REFERENCES person (id)
 GO
 
@@ -234,7 +234,7 @@ ALTER TABLE country_department_qualification
 GO
 
 ALTER TABLE employee_person_traits
-    ADD CONSTRAINT fk_employee_persontraits_on_employee FOREIGN KEY (employee_id) REFERENCES employee (id)
+    ADD CONSTRAINT fk_employee_persontraits_on_employee FOREIGN KEY (employee_id) REFERENCES string (id)
 GO
 
 ALTER TABLE project_initiatives

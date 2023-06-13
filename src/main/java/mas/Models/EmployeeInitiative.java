@@ -1,10 +1,9 @@
 package mas.Models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.Hibernate;
+import org.springframework.context.annotation.Primary;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -17,9 +16,12 @@ import java.util.Objects;
 @NoArgsConstructor
 public class EmployeeInitiative implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    int id;
+
     @ManyToOne
     private Employee employee;
-    @Id
+
     @ManyToOne
     private Initiative initiative;
 
@@ -31,14 +33,14 @@ public class EmployeeInitiative implements Serializable {
     /**
      * Przykład subset
      * */
-    private boolean iInitiativeLeader;
+    private boolean initiativeLeader;
 
 
     public EmployeeInitiative(Employee employee, Initiative initiative, boolean isInitLeader) {
         this.employee = employee;
         this.initiative = initiative;
         this.assigned = LocalDate.now();
-        this.iInitiativeLeader = isInitLeader;
+        this.initiativeLeader = isInitLeader;
     }
 
     public EmployeeInitiative(Employee employee, Initiative initiative) {

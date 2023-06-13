@@ -49,7 +49,7 @@ public class Country implements Serializable {
         }
     }
 
-    public Department findDeptQualification(String name) throws Exception{
+    public Department findDeptQualification(Employee name) throws Exception{
         if (!departmentQualification.containsKey(name))
             throw new Exception("Cannot find that department");
         return departmentQualification.get(name);

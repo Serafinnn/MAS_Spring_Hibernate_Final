@@ -10,7 +10,7 @@ public abstract class Initiative {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    private Integer id;
+    private int id;
 
     String name;
     String description;
@@ -24,16 +24,16 @@ public abstract class Initiative {
     /**
      * Dziedziczenie wieloaspektowe
      * */
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     Framework type;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     TypeOfInitiative typeOfInitiative;
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 

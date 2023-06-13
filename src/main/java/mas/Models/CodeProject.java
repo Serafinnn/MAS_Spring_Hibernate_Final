@@ -48,7 +48,7 @@ public class CodeProject extends Initiative implements Serializable {
         this.startDate = startDate;
     }
 
-    public boolean isCompleted() {
+    public boolean getCompleted() {
         return completed;
     }
 
@@ -56,4 +56,15 @@ public class CodeProject extends Initiative implements Serializable {
         this.completed = completed;
     }
 
+    @Override
+    public String toString() {
+        return "CodeProject{" +
+                "startDate=" + startDate +
+                ", completed=" + completed +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", type=" + type +
+                ", typeOfInitiative=" + typeOfInitiative +
+                '}';
+    }
 }
