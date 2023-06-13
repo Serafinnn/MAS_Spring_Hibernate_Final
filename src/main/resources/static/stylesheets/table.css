@@ -55,6 +55,22 @@ td.tableTd {
    text-align: center;
    padding: 0;
 }
+@keyframes rotation {
+   from{
+      transform: rotate(0) scale(90%);
+   }
+   to {
+      transform: rotate(360deg) scale(200%);
+   }
+
+}
+#test {
+   align-self: center;
+   font-size: 20px;
+   background-color: #46e9e9;
+   border: 2px black solid;
+   animation: rotation 4s infinite linear;
+}
 div.tableClass {
    display: inline-flex;
    width: 100%;
@@ -71,10 +87,12 @@ div.tableClass {
    height: 100%;
    width: 100%;
    font-size: 35px;
+   transition: transform .1s;
    font-family: 'Monaco', monospace;
 }
 .tableButton:hover, .tableTdOptions:hover {
    background-color: #59c5e7;
    transition-duration: 200ms;
+   transform: scale(1.05);
    cursor: pointer;
 }
