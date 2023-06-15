@@ -1,6 +1,6 @@
 .tableTdOptions {
    background-color: lightblue;
-   width: 12.5%;
+   width: 50%;
    margin-left: auto;
    margin-right: auto;
    align-content: center;
@@ -40,6 +40,10 @@ a.tableHref {
    align-content: center;
    text-align: center;
    width: 100%;
+}
+tr.options {
+   width: 100%;
+
 }
 table {
    width: 70%;

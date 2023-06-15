@@ -10,9 +10,6 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
-@Getter
-@Setter
-@ToString
 @NoArgsConstructor
 public class EmployeeInitiative implements Serializable {
     @Id
@@ -59,5 +56,56 @@ public class EmployeeInitiative implements Serializable {
     @Override
     public int hashCode() {
         return getClass().hashCode();
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+    public Initiative getInitiative() {
+        return initiative;
+    }
+
+    public void setInitiative(Initiative initiative) {
+        this.initiative = initiative;
+    }
+
+    public LocalDate getAssigned() {
+        return assigned;
+    }
+
+    public void setAssigned(LocalDate assigned) {
+        this.assigned = assigned;
+    }
+
+    public boolean getInitiativeLeader() {
+        return initiativeLeader;
+    }
+
+    public void setInitiativeLeader(boolean initiativeLeader) {
+        this.initiativeLeader = initiativeLeader;
+    }
+
+    @Override
+    public String toString() {
+        return "EmployeeInitiative{" +
+                "id=" + id +
+                ", employee=" + employee +
+                ", initiative=" + initiative +
+                ", assigned=" + assigned +
+                ", initiativeLeader=" + initiativeLeader +
+                '}';
     }
 }

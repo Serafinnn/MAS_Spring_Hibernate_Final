@@ -80,4 +80,9 @@ public abstract class Initiative {
             type.addInitiative(this);
         }
     }
+
+    @Override
+    public String toString() {
+        return id+" - "+name;
+    }
 }

@@ -50,6 +50,7 @@ public class BaseService implements CommandLineRunner {
                                 )
                                 .collect(Collectors.toList())
                         ).collect(Collectors.toList());
+        run(propertiesList.toString());
         return Pair.of(fieldsList, propertiesList);
     }
 

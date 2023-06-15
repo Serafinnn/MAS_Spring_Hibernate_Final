@@ -58,13 +58,6 @@ public class CodeProject extends Initiative implements Serializable {
 
     @Override
     public String toString() {
-        return "CodeProject{" +
-                "startDate=" + startDate +
-                ", completed=" + completed +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", type=" + type +
-                ", typeOfInitiative=" + typeOfInitiative +
-                '}';
+        return "CodeProject: " + name + " " + type;
     }
 }
