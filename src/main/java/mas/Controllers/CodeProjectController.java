@@ -42,7 +42,7 @@ public class CodeProjectController implements CommandLineRunner {
     @GetMapping("/all")
     public java.lang.String getAll(Model model) {
         List<CodeProject> listOfRows = (List<CodeProject>) repository.findAll();
-        new BaseService().setModelToShowAll(Country.class, listOfRows, model);
+        new BaseService().setModelToShowAll(CodeProject.class, listOfRows, model);
 
         return "baseModelsList";
     }
@@ -61,10 +61,12 @@ public class CodeProjectController implements CommandLineRunner {
     }
     @Transactional
     @PostMapping(value = "/add")
-    public String addCodeProject(@ModelAttribute(name = "codeProjectDto") CodeProjectDto codeProjectDto, ModelMap model, RedirectAttributes redirectAttributes) throws Exception {
+    public RedirectView addCodeProject(@ModelAttribute(name = "codeProjectDto") CodeProjectDto codeProjectDto, ModelMap model, RedirectAttributes redirectAttributes) throws Exception {
 
         if (repository.countByName(codeProjectDto.getName())  != 0){
-            return "redirect:/classes/show";
+            redirectAttributes.addFlashAttribute("alertAdd", 3);
+
+            return new RedirectView("/codeproject/showForm");
         }
 
         run(codeProjectDto.toString());
@@ -80,11 +82,16 @@ public class CodeProjectController implements CommandLineRunner {
 
         repository.save(codeProject);
 
+        if (Objects.equals(codeProjectDto.getEmpName(), "empty")){
+            redirectAttributes.addFlashAttribute("alertAdd", 2);
+
+            return new RedirectView("/classes/show");
+        }
+
         redirectAttributes.addFlashAttribute("name", codeProjectDto.getName());
         redirectAttributes.addFlashAttribute("empName", codeProjectDto.getEmpName());
-        redirectAttributes.addFlashAttribute("alertAdd", 2);
 
-        return "redirect:/classes/show";
+        return new RedirectView("/wait/add");
     }
 
     @Override

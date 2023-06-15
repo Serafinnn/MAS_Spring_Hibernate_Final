@@ -1,26 +1,47 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title th:text="${className}"></title>
-  <link rel="stylesheet" type="text/css" href="/stylesheets/base.css" th:href="@{/stylesheets/base.css}">
-  <link rel="stylesheet" type="text/css" href="/stylesheets/table.css" th:href="@{/stylesheets/table.css}">
-  <link rel="stylesheet" type="text/css" href="/stylesheets/nav.css" th:href="@{/stylesheets/nav.css}">
+    <meta charset="UTF-8">
+    <title th:text="${className}"></title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/base.css" th:href="@{/stylesheets/base.css}">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/table.css" th:href="@{/stylesheets/table.css}">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/nav.css" th:href="@{/stylesheets/nav.css}">
 
-  <SCRIPT>
-    /*<![CDATA[*/
+    <SCRIPT>
+        /*<![CDATA[*/
 
 
 
-    /*]]>*/
-  </SCRIPT>
+        /*]]>*/
+    </SCRIPT>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        function alertFun(alertText) {
+            if (alertText !== null) {
+                switch (alertText) {
+                    case 1: {
+                        swal("Error", "Unique constrains prevented adding new object", "error");
+                        break;
+                    }
+                    case 2: {
+                        swal("Success", "CodeProject was successfully added to the database", "success");
+                        break;
+                    }
+                    case 3: {
+                        swal("Error", "Initiative with this name already exists in the database", "error");
+                        break;
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body style="font-family: 'Monaco', monospace;">
+<body th:onload="'alertFun(' + ${alertAdd} + ')'" style="font-family: 'Monaco', monospace;">
 <header>
-  <div th:replace="fragments/navbar :: navbar"></div>
+    <div th:replace="fragments/navbar :: navbar"></div>
 </header>
 <div class="center">
-    <form th:action="'/'+ ${className} + '/add'" th:object="${codeProjectDto}"  method="post">
+    <form th:action="'/'+ ${className} + '/add'" th:object="${codeProjectDto}" method="post">
         <label>startDate</label><br>
         <label>
             <input type="text" th:field="*{startDate}" placeholder="YYYY-MM-DD">

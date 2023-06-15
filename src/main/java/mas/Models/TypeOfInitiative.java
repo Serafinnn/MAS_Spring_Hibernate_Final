@@ -36,4 +36,8 @@ public class TypeOfInitiative implements Serializable {
         }
     }
 
+    @Override
+    public String toString() {
+        return name;
+    }
 }

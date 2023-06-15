@@ -44,7 +44,7 @@ public class WaitController implements CommandLineRunner {
 
     @Transactional
     @GetMapping(value = "/add")
-    public RedirectView addCodeProject(ModelMap model, @ModelAttribute("name") String name, @ModelAttribute("empName") String empName) {
+    public RedirectView addCodeProject(ModelMap model, @ModelAttribute("name") String name, @ModelAttribute("empName") String empName, RedirectAttributes redirectAttributes) {
         run(name+" - "+empName);
 
         Initiative init = initiativeRepository.findByName(name);
@@ -53,6 +53,8 @@ public class WaitController implements CommandLineRunner {
         Employee emp = employeeRepository.findById(empId).get();
 
         employeeInitiativeRepository.save(new EmployeeInitiative(emp, init, false));
+
+        redirectAttributes.addFlashAttribute("alertAdd", 2);
 
         return new RedirectView("/classes/show");
     }

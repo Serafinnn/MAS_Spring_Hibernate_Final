@@ -39,6 +39,9 @@ public abstract class Framework {
         this.initiatives.remove(initiative);
     }
 
-
+    @Override
+    public String toString(){
+        return name;
+    }
 
 }

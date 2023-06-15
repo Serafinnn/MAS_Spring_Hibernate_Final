@@ -1,6 +1,7 @@
 package mas.Models;
 
 import jakarta.persistence.*;
+import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.List;

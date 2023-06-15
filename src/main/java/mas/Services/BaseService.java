@@ -1,5 +1,7 @@
 package mas.Services;
 
+import mas.Models.Framework;
+import mas.Models.TypeOfInitiative;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.data.util.Pair;
 import org.springframework.ui.Model;
@@ -13,10 +15,23 @@ import java.util.stream.Stream;
 public class BaseService implements CommandLineRunner {
 
     public Pair<List<String>, List<List<String>>> getFieldsNames(Class<?> cl, List<?> list) {
-        Field[] fields = cl.getDeclaredFields();
+
+        Field[] fields1 = cl.getDeclaredFields();
+        Field[] superClassFields = cl.getSuperclass().getDeclaredFields();
+
+        Field[] fields = new Field[fields1.length+superClassFields.length];
+
+        System.arraycopy(superClassFields, 0, fields, 0, superClassFields.length);
+        System.arraycopy(fields1, 0, fields, superClassFields.length, fields1.length);
+
+        run(Arrays.toString(fields));
+
         List<String> fieldsList = Arrays
                 .stream(fields)
-                .filter(field -> field.getType() != Map.class && field.getType() != List.class)
+                .filter(field -> field.getType() != Map.class
+                        && field.getType() != List.class
+                        && field.getType() != Framework.class
+                        && field.getType() != TypeOfInitiative.class)
                 .map(Field::getName)
                 .toList();
         List<List<String>> propertiesList =
