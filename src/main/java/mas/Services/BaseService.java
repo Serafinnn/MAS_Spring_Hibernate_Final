@@ -14,7 +14,7 @@ import java.util.stream.Stream;
 
 public class BaseService implements CommandLineRunner {
 
-    public Pair<List<String>, List<List<String>>> getFieldsNames(Class<?> cl, List<?> list) {
+    public Pair<List<String>, List<List<String>>> getFieldsNames(Class<?> cl, List<?> listOfRows) {
 
         Field[] fields1 = cl.getDeclaredFields();
         Field[] superClassFields = cl.getSuperclass().getDeclaredFields();
@@ -35,7 +35,7 @@ public class BaseService implements CommandLineRunner {
                 .map(Field::getName)
                 .toList();
         List<List<String>> propertiesList =
-                list.stream()
+                listOfRows.stream()
                         .map(o -> fieldsList.stream()
                                 .flatMap(field -> Arrays.stream(cl.getMethods())
                                         .filter(method -> method.getName().startsWith("get") && method.getName().length() == field.length() + 3)
