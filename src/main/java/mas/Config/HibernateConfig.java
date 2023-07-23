@@ -33,7 +33,7 @@ public class HibernateConfig {
         dataSource.setUrl("jdbc:sqlserver://masnemasy.database.windows.net:1433;database=mas2;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;");
         dataSource.setSchema("dbo");
         dataSource.setUsername("Serafin@masnemasy");
-        dataSource.setPassword("F+i1?j7G22!");
+        dataSource.setPassword("passwd");
 
         return dataSource;
     }
