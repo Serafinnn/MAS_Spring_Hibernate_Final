@@ -30,7 +30,7 @@ public class HibernateConfig {
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-        dataSource.setUrl("jdbc:sqlserver://masnemasy.database.windows.net:1433;database=mas2;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;");
+        dataSource.setUrl(System.getenv("DB_CONNECTION_STRING"));
         dataSource.setSchema("dbo");
         dataSource.setUsername("Serafin@masnemasy");
         dataSource.setPassword("passwd");
